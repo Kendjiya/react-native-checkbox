@@ -17,20 +17,20 @@ class CheckBox extends Component {
         super(props);
 
         this.state = {
-            internalChecked: false
+            internalChecked: props.checked || false
         };
 
         this.onChange = this.onChange.bind(this);
     }
 
     onChange() {
-        let internalChecked = this.state.internalChecked;
+        let internalChecked = !this.state.internalChecked;
 
         if(this.props.onChange){
           this.props.onChange(internalChecked);
         }
         this.setState({
-            internalChecked: !internalChecked
+            internalChecked
         });
     }
 
@@ -46,14 +46,7 @@ class CheckBox extends Component {
             </View>
         );
 
-        let source;
-
-        if(typeof this.props.checked === 'boolean') {
-          source = this.props.checked ? this.props.checkedImage : this.props.uncheckedImage;
-        } else {
-          source = this.state.internalChecked ? this.props.checkedImage : this.props.uncheckedImage;
-        }
-
+        let source = this.state.internalChecked ? this.props.checkedImage : this.props.uncheckedImage;
 
         if (this.props.labelBefore) {
             container = (
