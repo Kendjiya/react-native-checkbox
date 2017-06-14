@@ -24,18 +24,14 @@ class CheckBox extends Component {
     }
 
     onChange() {
-        if (this.props.onChange &&  typeof this.props.checked === 'boolean') {
-            this.props.onChange(this.props.checked);
-        } else {
-            let internalChecked = this.state.internalChecked;
+        let internalChecked = this.state.internalChecked;
 
-            if(this.props.onChange){
-              this.props.onChange(internalChecked);
-            }
-            this.setState({
-                internalChecked: !internalChecked
-            });
+        if(this.props.onChange){
+          this.props.onChange(internalChecked);
         }
+        this.setState({
+            internalChecked: !internalChecked
+        });
     }
 
     render() {
